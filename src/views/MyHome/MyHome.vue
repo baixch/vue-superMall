@@ -49,6 +49,7 @@ import BackTopBtn from "components/commons/backTop/BackTopBtn";
 import "swiper/css/swiper.css";
 import { getHomeRequestData, getHomeGoodsData } from "@/networks/home.js";
 import { clearTimeout } from "timers";
+import { debounce } from "common/utils.js";
 
 export default {
   name: "home",
@@ -139,8 +140,9 @@ export default {
     this.getHomeGoods("pop");
   },
   mounted() {
-    const refresh = this.debounce(this.$refs.scroll.refresh, 200);
+    const refresh = debounce(this.$refs.scroll.refresh);
     this.$bus.$on("imageLoaded", () => {
+      console.log("----myhome  refresh-----");
       refresh();
     });
 
@@ -150,8 +152,8 @@ export default {
     });
   },
   activated() {
-    this.$refs.scroll.scrollToTop(0, this.saveY, 0);
     this.$refs.scroll.refresh();
+    this.$refs.scroll.scrollToTop(0, this.saveY, 0);
   },
   deactivated() {
     this.saveY = this.$refs.scroll.getScrollY();
@@ -191,16 +193,6 @@ export default {
     backClick() {
       this.$refs.scroll.scrollToTop(0, 0);
       this.isShowBackTop = false;
-    },
-    //防抖动
-    debounce(func, delay) {
-      let timer = null;
-      return function(...args) {
-        if (timer) window.clearTimeout(timer);
-        timer = setTimeout(() => {
-          func.apply(this, args);
-        }, delay);
-      };
     }
   }
 };

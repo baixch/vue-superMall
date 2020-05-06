@@ -21,3 +21,8 @@ export function getDetailGoodsData(iid) {
         }
     })
 }
+export function getDetailRecommendData() {
+    return request({
+        url: "/recommend",
+    })
+}

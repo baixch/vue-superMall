@@ -10,12 +10,14 @@
         @scrollToRefresh="scrollToRefresh"
       ></detail-image-info>
       <detail-param-info :itemParam="itemParam"></detail-param-info>
+      <detail-comment-info :commentInfo="commentInfo"></detail-comment-info>
+      <my-goods-list :listArr="recommendData"></my-goods-list>
     </better-scroll>
   </div>
 </template>
 
 <script>
-import { getDetailGoodsData } from "networks/home.js";
+import { getDetailGoodsData, getDetailRecommendData } from "networks/home.js";
 import { DetailGoodsBaseData } from "dataConfig/detailGoods/detailGoods.js";
 import BetterScroll from "components/commons/bscroll/BetterScroll";
 import DetailNavBar from "./DetailNavBar";
@@ -24,6 +26,8 @@ import DetailBaseInfo from "./detailGoodsComps/DetailBaseInfo";
 import DetailShopInfo from "./detailGoodsComps/DetailShopInfo";
 import DetailImageInfo from "./detailGoodsComps/DetailImageInfo";
 import DetailParamInfo from "./detailGoodsComps/DetailParamInfo";
+import DetailCommentInfo from "./detailGoodsComps/DetailCommentInfo";
+import MyGoodsList from "components/contents/myGoodsList/MyGoodsList";
 export default {
   name: "detail",
   components: {
@@ -33,7 +37,9 @@ export default {
     DetailBaseInfo,
     DetailShopInfo,
     DetailImageInfo,
-    DetailParamInfo
+    DetailParamInfo,
+    DetailCommentInfo,
+    MyGoodsList
   },
   data() {
     return {
@@ -43,7 +49,9 @@ export default {
       baseInfoData: {},
       shopInfoData: {},
       detailInfo: {},
-      itemParam: {}
+      itemParam: {},
+      commentInfo: {},
+      recommendData: []
     };
   },
   created() {
@@ -67,10 +75,15 @@ export default {
           result.shopInfo,
           result.columns
         );
-        console.log(this.baseInfoData);
         this.shopInfoData = result.shopInfo;
         this.detailInfo = result.detailInfo;
         this.itemParam = result.itemParams;
+        this.commentInfo = result.rate;
+        console.log(this.commentInfo);
+      });
+      getDetailRecommendData().then(res => {
+        this.recommendData = res.data.list;
+        console.log(res.data.list);
       });
     },
     getBanners(arr) {

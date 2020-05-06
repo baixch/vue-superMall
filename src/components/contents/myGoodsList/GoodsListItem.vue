@@ -1,6 +1,6 @@
 <template>
   <div class="list-item" @click="goToDetail">
-    <img :src="itemObj.show.img" alt="" @load="imageLoaded" />
+    <img :src="getImg" alt="" @load="imageLoaded" />
     <div class="list-info">
       <p>{{ itemObj.title }}</p>
       <span>{{ itemObj.price }}</span>
@@ -18,9 +18,19 @@ export default {
       default: {}
     }
   },
+  computed: {
+    getImg() {
+      return this.itemObj.image || this.itemObj.show.img;
+    }
+  },
   methods: {
     imageLoaded() {
-      this.$bus.$emit("imageLoaded");
+      console.log(this.$route);
+      if (this.$route.path.indexOf("/MyHome") > -1) {
+        this.$bus.$emit("imageLoaded");
+      } else {
+        this.$bus.$emit("detailImageLoaded");
+      }
     },
     goToDetail() {
       this.$router.push("/detail/" + this.itemObj.iid);
