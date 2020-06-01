@@ -16,6 +16,9 @@ export default {};
   height: 44px;
   line-height: 44px;
   text-align: center;
+  background-color: palevioletred;
+  color: white;
+  font-size: 18px;
   box-shadow: 0px 1px 1px rgb(230, 230, 230);
 }
 .left,

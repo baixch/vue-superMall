@@ -2,6 +2,8 @@
 export class DetailGoodsBaseData {
     constructor(itemInfo, shopInfo, columns) {
         this.title = itemInfo.title
+        this.desc = itemInfo.desc
+        this.realPrice = itemInfo.lowNowPrice
         this.price = itemInfo.price
         this.oldPrice = itemInfo.oldPrice
         this.discountDesc = itemInfo.discountDesc

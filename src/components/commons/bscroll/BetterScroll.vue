@@ -32,6 +32,8 @@ export default {
       // },
       pullUpLoad: this.isUpLoad
     });
+    console.log(this.scroll);
+
     this.scroll &&
       this.scroll.on("scroll", position => {
         this.$emit("scrollPosition", position);

@@ -45,11 +45,11 @@ import DetailGoods from "./detailGoods/DetailGoods";
 import PopurlarGoods from "components/contents/popurlar/PopurlarGoods";
 import TabControl from "components/contents/tabControl/TabControl";
 import MyGoodsList from "components/contents/myGoodsList/MyGoodsList";
-import BackTopBtn from "components/commons/backTop/BackTopBtn";
 import "swiper/css/swiper.css";
 import { getHomeRequestData, getHomeGoodsData } from "@/networks/home.js";
 import { clearTimeout } from "timers";
 import { debounce } from "common/utils.js";
+import { backTopMix } from "common/mixin.js";
 
 export default {
   name: "home",
@@ -61,18 +61,16 @@ export default {
     PopurlarGoods,
     TabControl,
     MyGoodsList,
-    BackTopBtn,
     DetailGoods
   },
+  mixins: [backTopMix],
   data() {
     return {
       height: "200px",
       banners: [],
       recommend: [],
       currentType: "pop",
-      isShowBackTop: false,
       tabControlTop: 0,
-      tabIsShow: false,
       saveY: 0,
       tabControlData: [
         { id: 0, title: "流行" },
@@ -156,6 +154,8 @@ export default {
     this.$refs.scroll.scrollToTop(0, this.saveY, 0);
   },
   deactivated() {
+    console.log("---deactivated----");
+
     this.saveY = this.$refs.scroll.getScrollY();
   },
   methods: {
@@ -187,12 +187,8 @@ export default {
       this.getHomeGoods(this.currentType);
     },
     scrollPosition(position) {
-      this.isShowBackTop = position.y < -1000;
+      this.listenShowBackTop(position);
       this.tabIsShow = position.y < -this.tabControlTop - 44;
-    },
-    backClick() {
-      this.$refs.scroll.scrollToTop(0, 0);
-      this.isShowBackTop = false;
     }
   }
 };

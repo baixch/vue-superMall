@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <script src="./jquery-3.3.1.min.js"></script>
+
+    <head>
+        <style>
+            * {
+                margin: 0px;
+            }
+
+            #header {
+                background-color: red;
+                width: 100%;
+                text-align: center;
+                font-weight: bold;
+                color: white;
+                overflow: auto;
+            }
+
+            #header span {
+                float: left;
+                padding: 0 30px;
+                line-height: 40px;
+            }
+
+            #news {
+                overflow: auto;
+                text-align: center;
+                margin: 10px auto;
+                width: 950px;
+            }
+
+            #news .newsItem {
+                float: left;
+                border-right: dotted 1px lightgray;
+                padding: 0px 20px;
+            }
+
+            #news .newsItemR {
+                float: left;
+                font-size: 17px;
+                border: none;
+                padding: 0px 20px;
+            }
+
+            #news img {
+                width: 60px;
+            }
+
+            #news .newsTitle {
+                font-size: 20px;
+                color: gray;
+            }
+
+            #news .newsSub {
+                font-size: 17px;
+                color: gray;
+            }
+
+            #case {
+                overflow: auto;
+                background-color: lightgrey;
+            }
+
+            .casetitle {
+                margin: 20px 300px;
+            }
+
+            .casecontent {
+                overflow: auto;
+                width: 800px;
+                margin: auto;
+            }
+
+            .ccItem {
+                float: left;
+                width: 210px;
+                margin: 20px;
+                background-color: white;
+            }
+
+            #case img {
+                width: 210px;
+            }
+
+            .caseTitle {
+                font-size: 20px;
+                color: gray;
+                text-align: left;
+            }
+
+            #case .caseSub {
+                font-size: 15px;
+                color: gray;
+            }
+
+            .test {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100px;
+                height: 100px;
+                background: red;
+            }
+        </style>
+        <script>
+            $(function () {
+                $("button").on('click', function () {
+                    console.log("--------");
+                    let $div = $("<div class='test'>123</div>")
+                    $('body').append($div)
+                })
+                $('body').delegate('.test', 'click', function () {
+                    console.log('=====');
+
+                })
+            })
+        </script>
+    </head>
+
+<body>
+    <div id="header">
+        <div style="width: 800px; text-align: center; overflow: auto; margin: auto;">
+            <span>首页</span>
+            <span>关于我们</span>
+            <span>我们的服务</span>
+            <span>客户案例</span>
+            <span>联系我们</span>
+            <button>按钮</button>
+        </div>
+    </div>
+    <div id="banner">
+        <img src="./testImage/testBanner.png" alt="" style="width: 100%;">
+    </div>
+    <div id="news">
+        <div class="newsItem">
+            <img src="./testImage/computer.png" alt="""><br>
+            <span class=" newsTitle">创意网站设计</span><br>
+            <span class="newsSub">企业网站建设</span><br>
+            <span class="newsSub">品牌网站建设</span><br>
+            <span class="newsSub">电子商务建设</span><br>
+            <span class="newsSub">APP页面建设</span><br>
+        </div>
+        <div class="newsItem">
+            <img src="./testImage/computer.png" alt="""><br>
+            <span class=" newsTitle">创意网站设计</span><br>
+            <span class="newsSub">企业网站建设</span><br>
+            <span class="newsSub">品牌网站建设</span><br>
+            <span class="newsSub">电子商务建设</span><br>
+            <span class="newsSub">APP页面建设</span><br>
+        </div>
+        <div class="newsItem">
+            <img src="./testImage/computer.png" alt="""><br>
+            <span class=" newsTitle">创意网站设计</span><br>
+            <span class="newsSub">企业网站建设</span><br>
+            <span class="newsSub">品牌网站建设</span><br>
+            <span class="newsSub">电子商务建设</span><br>
+            <span class="newsSub">APP页面建设</span><br>
+        </div>
+        <div class="newsItem">
+            <img src="./testImage/computer.png" alt="""><br>
+            <span class=" newsTitle">创意网站设计</span><br>
+            <span class="newsSub">企业网站建设</span><br>
+            <span class="newsSub">品牌网站建设</span><br>
+            <span class="newsSub">电子商务建设</span><br>
+            <span class="newsSub">APP页面建设</span><br>
+        </div>
+        <div class="newsItemR">
+            <img src="./testImage/computer.png" alt="""><br>
+            <span class=" newsTitle">创意网站设计</span><br>
+            <span class="newsSub">企业网站建设</span><br>
+            <span class="newsSub">品牌网站建设</span><br>
+            <span class="newsSub">电子商务建设</span><br>
+            <span class="newsSub">APP页面建设</span><br>
+        </div>
+    </div>
+    <div id="case">
+        <div class="casetitle">
+            <p>Case</p>
+        </div>
+        <div class="casecontent">
+            <div class="ccItem">
+                <img src="./testImage/you.png" alt="""><br>
+                <p class=" caseTitle">创意网站设计</p><br>
+                <p class="caseSub">企业网站建设企业网站建设企业网站建设企业网站建设企业网站建设企业网站建设企业网站建设企业网站建设</p><br>
+            </div>
+            <div class="ccItem">
+                <img src="./testImage/you.png" alt="""><br>
+                <p class=" caseTitle">创意网站设计</p><br>
+                <p class="caseSub">企业网站建设企业网站建设企业网站建设企业网站建设企业网站建设企业网站建设企业网站建设企业网站建设</p><br>
+            </div>
+            <div class="ccItem">
+                <img src="./testImage/you.png" alt="""><br>
+                <p class=" caseTitle">创意网站设计</p><br>
+                <p class="caseSub">企业网站建设企业网站建设企业网站建设企业网站建设企业网站建设企业网站建设企业网站建设企业网站建设</p><br>
+            </div>
+        </div>
+        <div class="casemore">
+            <p style="text-align: center; width: 100%;">查看更多</p>
+        </div>
+    </div>
+</body>
+
+
+</html>

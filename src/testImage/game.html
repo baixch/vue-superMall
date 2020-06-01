@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../jquery-3.3.1.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .main {
+            position: relative;
+            width: 320px;
+            height: 480px;
+            margin: 100px auto;
+            background: url("./img/game_bg.jpg") no-repeat 100% 100%;
+        }
+
+        .progress {
+            position: absolute;
+            top: 65px;
+            left: 63px;
+            width: 180px;
+            height: 18px;
+            overflow: hidden;
+        }
+
+        .target {
+            position: absolute;
+            display: none;
+            /* top: 140px;
+            left: 110px; */
+            width: 65px;
+            height: 75px;
+            background-color: red;
+            background-image: url("./img/h.png");
+            background-position: 0 0;
+            background-size: cover;
+        }
+
+        .one {
+            top: 140px;
+            left: 110px;
+        }
+
+        .two {
+            top: 165px;
+            left: 197px;
+        }
+
+        .three {
+            top: 185px;
+            left: 27px;
+        }
+
+        .four {
+            top: 245px;
+            left: 27px;
+        }
+
+        .five {
+            top: 218px;
+            left: 114px;
+        }
+
+        .six {
+            top: 233px;
+            left: 209px;
+        }
+
+        .seven {
+            top: 318px;
+            left: 42px;
+        }
+
+        .eight {
+            top: 297px;
+            left: 130px;
+        }
+
+        .nine {
+            top: 318px;
+            left: 216px;
+        }
+
+        .show {
+            display: block;
+        }
+
+        .img {
+            /* width: 100px; */
+        }
+    </style>
+    <script>
+        $(function () {
+            $('.progress>img').animate({
+                width: 0,
+                height: 18
+            }, 5000)
+            var wolfArr1 = ["./img/h0.png", "./img/h1.png", "./img/h2.png", "./img/h3.png", "./img/h4.png", "./img/h5.png", "./img/h6.png", "./img/h7.png", "./img/h8.png", "./img/h9.png"];
+            var wolfArr2 = ["./img/x0.png", "./img/x1.png", "./img/x2.png", "./img/x3.png", "./img/x4.png", "./img/x5.png", "./img/x6.png", "./img/x7.png", "./img/x8.png", "./img/x9.png"];
+            var wolfArr = [wolfArr1, wolfArr2];
+            var positionArr = [
+                { top: '113px', left: '98px' },
+                { top: '140px', left: '186px' },
+                { top: '158px', left: '8px' },
+                { top: '220px', left: '10px' },
+                { top: '190px', left: '100px' },
+                { top: '210px', left: '200px' },
+                { top: '290px', left: '30px' },
+                { top: '270px', left: '120px' },
+                { top: '295px', left: '203px' },
+            ];
+            startAnimate();
+            var index = 0;
+            var maxIndex = 5;
+            function startAnimate() {
+                var num = Math.round(Math.random() * 8);
+                var number = Math.round(Math.random());
+                var $wolf = $("<img class='img' src=''>")
+                $(".main").append($wolf)
+
+                var timer = setInterval(() => {
+                    $wolf.attr('src', wolfArr[number][index])
+
+                    if (index > maxIndex) {
+                        index = 0;
+                        clearInterval(timer);
+                        $wolf.remove();
+                        startAnimate();
+                    }
+                    index++;
+
+                }, 300);
+                $wolf.css({
+                    position: 'absolute',
+                    top: positionArr[num].top,
+                    left: positionArr[num].left
+                })
+                hitWolf($wolf)
+
+            }
+            function hitWolf(_this) {
+                _this.one('click', function () {
+                    index = 6;
+                    maxIndex = 9;
+                })
+            }
+        })
+
+    </script>
+</head>
+
+<body>
+    <div class="main">
+        <div class="progress">
+            <img src="./img/progress.png" alt="">
+        </div>
+    </div>
+</body>
+
+</html>

@@ -37,6 +37,7 @@ export default {
   methods: {
     clickItem(index) {
       this.currentIndex = index;
+      this.$emit("navItemClick", this.currentIndex);
     },
     backClick() {
       this.$emit("goBack");

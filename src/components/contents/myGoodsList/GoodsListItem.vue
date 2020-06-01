@@ -1,6 +1,6 @@
 <template>
   <div class="list-item" @click="goToDetail">
-    <img :src="getImg" alt="" @load="imageLoaded" />
+    <img v-lazy="getImg" alt="" @load="imageLoaded" />
     <div class="list-info">
       <p>{{ itemObj.title }}</p>
       <span>{{ itemObj.price }}</span>
@@ -25,7 +25,6 @@ export default {
   },
   methods: {
     imageLoaded() {
-      console.log(this.$route);
       if (this.$route.path.indexOf("/MyHome") > -1) {
         this.$bus.$emit("imageLoaded");
       } else {

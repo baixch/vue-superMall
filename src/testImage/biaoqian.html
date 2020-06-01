@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../jquery-3.3.1.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .main {
+            margin: 100px auto;
+            width: 400px;
+            height: 300px;
+            border: 1px solid black;
+        }
+
+        .nav {
+            width: 100%;
+            height: 50px;
+        }
+
+        .nav>li {
+            float: left;
+            list-style: none;
+            width: 100px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            background-color: chartreuse;
+        }
+
+        .nav>.current {
+            background-color: chocolate;
+        }
+
+        .content>li {
+            display: none;
+            list-style: none;
+        }
+
+        .content>.show {
+            display: block;
+        }
+
+
+        .content img {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+    <script>
+        $(function () {
+            $('.nav>li').hover(function () {
+
+                $(this).addClass('current').siblings().removeClass('current')
+                var index = $('.nav>li').index(this);
+                var $li = $('.content>li').eq(index)
+                $li.addClass('show').siblings().removeClass('show')
+            })
+        })
+
+    </script>
+</head>
+
+<body>
+    <div class="main">
+        <ul class="nav">
+            <li class="current">1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+        </ul>
+        <ul class="content">
+            <li class="show"><img src="./computer.png" alt=""></li>
+            <li><img src="./testBanner.png" alt=""></li>
+            <li><img src="./you.png" alt=""></li>
+            <li><img src="./computer.png" alt=""></li>
+        </ul>
+    </div>
+</body>
+
+</html>

@@ -13,6 +13,7 @@ module.exports = {
             .set('networks', resolve('src/networks'))
             .set('common', resolve('src/common'))
             .set('dataConfig', resolve('src/dataConfig'))
+            .set('store', resolve('src/store'))
         //set第一个参数：设置的别名，第二个参数：设置的路径
 
     }

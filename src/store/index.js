@@ -1,56 +1,54 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import Vue from "vue"
+import Vuex from "vuex"
 
 Vue.use(Vuex)
 
-export default new Vuex.Store({
-  state: {
-    todos: [
-      {
-        id: 1,
-        title: "待办事项1",
-        completed: false
-      },
-      {
-        id: 2,
-        title: "待办事项2",
-        completed: false
-      },
-      {
-        id: 3,
-        title: "待办事项3",
-        completed: false
-      },
-      {
-        id: 4,
-        title: "待办事项4",
-        completed: false
-      },
-      {
-        id: 5,
-        title: "待办事项5",
-        completed: false
-      }
-    ]
-  },
-  getters: {
-    getDatas: state => {
-      return state.todos;
-    }
-  },
-  mutations: {
-    deleteTodo(state, id) {
-      state.todos = state.todos.filter(todo => todo.id != id);
+const state = {
+    cartGoods: [],
+    totleNum: 0,
+    totlePrice: 0,
+}
+const getters = {
+    cartGoods(state) {
+        return state.cartGoods
     },
-    addNewTodo(state, todo) {
-      state.todos = [...state.todos, todo];
+    getTotlePrice(state) {
+        return state.totlePrice
+    },
+    getTotleNum(state) {
+        return state.totleNum
+    },
+    getTotleChecked(state) {
+        return state.checkTotle
+    },
+}
+const mutations = {
+    addCount(state, oldGood) {
+        oldGood.count += 1;
+    },
+    addToCart(state, payload) {
+        payload.count = 1;
+        state.cartGoods.push(payload)
     }
-  },
-  actions: {
-    addTodos({ commit }, newTodo) {
-      commit("addNewTodo", newTodo);
-    }
-  },
-  modules: {
-  }
-})
+}
+const actions = {
+    addToCart(context, payload) {
+        return new Promise((resolve, reject) => {
+            console.log(payload);
+            let oldGood = context.state.cartGoods.find(item => item.iid == payload.iid)
+            if (oldGood) {
+                context.commit('addCount', oldGood)
+                resolve("添加的商品加1")
+            } else {
+                context.commit('addToCart', payload)
+                resolve("添加新的商品")
+            }
+        })
+    },
+}
+export default new Vuex.Store({
+    state,
+    getters,
+    mutations,
+    actions
+});
